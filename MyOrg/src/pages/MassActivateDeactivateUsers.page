@@ -1,0 +1,65 @@
+<apex:page controller="MassActivateDeactivateUsersCtrl" sidebar="false">
+	<apex:pageMessages />
+    
+    <apex:form >
+        <!-- Filters -->
+        <apex:pageBlock >
+            
+        	View:&nbsp; &nbsp;
+            <apex:selectList multiselect="false" size="1">
+                <apex:selectOption itemLabel="All User" itemValue=""/>
+                <apex:selectOption itemLabel="All Active User" itemValue=""/>  
+                <apex:selectOption itemLabel="All Inactive User" itemValue=""/>
+            </apex:selectList>
+            <apex:selectList multiselect="false" size="1">
+                <apex:selectOptions value="{!userRoleOptions}" />
+            </apex:selectList>
+            <apex:selectList multiselect="false" size="1">
+                <apex:selectOptions value="{!userProfileOptions}" />
+            </apex:selectList>
+            
+        </apex:pageBlock>
+        <apex:pageBlock title="Mass Activate/Deactivate Users">
+            
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!activateUsers}" value="Activate"/>
+                <apex:commandButton action="{!deactivate}" value="Deactivate" />
+                <apex:commandButton action="{!cancel}" value="Cancel" />
+            </apex:pageBlockButtons>
+			
+			<apex:pageBlockSection title="Select Users to Activate/Deactivate" columns="1" id="pb">
+                <apex:pageBlockTable value="{!lstWrapperUsers}" var="u">
+                    <apex:column width="25px">
+                        <apex:inputCheckbox value="{!u.selected}" id="chkbox"/>
+                    </apex:column>
+                    <apex:column value="{!u.userRecord.Name}" headerValue="Full name" />
+					<apex:column value="{!u.userRecord.IsActive}" headerValue="IsActive" />
+					<apex:column value="{!u.userRecord.Username}" headerValue="Username" />
+					<apex:column value="{!u.userRecord.Email}" headerValue="Email" />
+					<apex:column value="{!u.userRecord.UserRole.Name}" headerValue="Role" />
+					<apex:column value="{!u.userRecord.Profile.Name}" headerValue="Profile" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:actionFunction name="show" action="{!refresh}" reRender="pb" />
+
+                <b>Records Per Page : </b>&nbsp; &nbsp;
+                <apex:selectList multiselect="false" size="1" value="{!recordsPerPage}" onchange="show()">
+                    <apex:selectOption itemLabel="10" itemValue="10"/>
+                    <apex:selectOption itemLabel="20" itemValue="20"/>  
+                    <apex:selectOption itemLabel="50" itemValue="50"/> 
+                    <apex:selectOption itemLabel="100" itemValue="100"/>
+                    <apex:selectOption itemLabel="200" itemValue="200"/>
+                </apex:selectList>
+                
+                <apex:commandButton value="|<First" action="{!first}"/>
+                <apex:commandButton value="<<Previous" action="{!previous}" rendered="{!hasPrevious}" />
+                <apex:commandButton value="Next>>" action="{!next}" rendered="{!hasNext}"/>
+                <apex:commandButton value="Last>|" action="{!last}"/>
+            </apex:pageBlockButtons>
+       		
+        </apex:pageBlock>        
+
+    </apex:form>
+</apex:page>

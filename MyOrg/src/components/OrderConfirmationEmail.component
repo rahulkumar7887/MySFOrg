@@ -1,0 +1,14 @@
+<apex:component access="global" >
+    <apex:attribute name="Order" type="Order" description="OrderConfirmationMail"/>  
+    <html>
+        <body>
+            <table>
+                <tr>
+                     <td>
+                         Order Confirmed
+                     </td>
+                </tr>
+            </table>
+        </body>
+    </html>
+</apex:component>

@@ -1,0 +1,31 @@
+<apex:page standardController="Opportunity" extensions="CloneDealCtrl" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <title>Clone Deal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"></meta>
+  <apex:stylesheet value="{!URLFOR($Resource.SLDS0120, 'assets/styles/salesforce-lightning-design-system.css')}" />
+  <apex:includeScript value="{!URLFOR($Resource.Resource_Library, 'js/svgxuse.js')}" />
+  <script src="/soap/ajax/35.0/connection.js" type="text/javascript"></script>
+  <script src="/soap/ajax/35.0/apex.js" type="text/javascript"></script>
+
+</head>
+
+<body>  
+
+<div class="slds-form-element slds-lookup" data-select="single">
+  <label class="slds-form-element__label" for="lookup-330">Account Name</label>
+  <div class="slds-form-element__control">
+    <div class="slds-input-has-icon slds-input-has-icon--right">
+      <svg aria-hidden="true" class="slds-input__icon">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+      </svg>
+      <input id="lookup-330" class="slds-lookup__search-input slds-input" type="search" placeholder="Search Accounts" aria-owns="lookup-330" role="combobox" aria-activedescendent="" aria-expanded="false" aria-autocomplete="list" />
+      
+    </div>
+  </div>
+</div>  
+
+</body>
+
+</html>
+</apex:page>

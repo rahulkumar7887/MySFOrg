@@ -1,0 +1,9 @@
+<apex:page standardController="Case">
+    <apex:form >
+      Account Details<br></br>
+      <B>Name:</B> <apex:outputField value="{!Case.Account.Name}"/><br></br>
+      <B>Industry:</B> <apex:outputField value="{!Case.Account.Industry}" /><br></br>
+      <B>Revenue:</B> <apex:outputField value="{!Case.Account.AnnualRevenue}"/><br></br>
+      <B>Number of Contacts:</B> <apex:outputField value="{!Case.Account.Number_of_Contacts__c}"/>      
+    </apex:form>
+</apex:page>

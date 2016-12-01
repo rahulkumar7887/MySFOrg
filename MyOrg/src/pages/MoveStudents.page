@@ -1,0 +1,30 @@
+<apex:page standardController="Class__c" sidebar="false"
+	extensions="MoveStudentsController">
+	<apex:form >
+		<apex:pageBlock >  
+              From Class:{!class__c.name} &nbsp; &nbsp; To Class
+                <apex:selectList multiselect="false" size="1">
+				<apex:selectOptions value="{!ClassNameOptions}" />
+
+				<!-- <apex:selectOption itemLabel="Class1" itemValue=""/>
+                    <apex:selectOption itemLabel="Class2" itemValue=""/>  
+                    <apex:selectOption itemLabel="Class3" itemValue=""/> 
+                    <apex:selectOption itemLabel="Class4" itemValue=""/>   -->
+			</apex:selectList>
+
+			<apex:pageBlockTable value="{!Class__c.Students__r}" var="s">
+				<apex:column headerValue="Select">
+					<apex:inputCheckbox />
+				</apex:column>
+				<apex:column value="{!s.Name}" />
+				<apex:column value="{!s.Class__c}" />
+				<apex:column value="{!s.Reg_Id__c}" />
+				<apex:column value="{!s.DOB__c}" />
+			</apex:pageBlockTable>
+
+			<apex:commandButton value="Move Selected Students"
+				action="{!MoveSelectedStudents}" />
+			<apex:commandButton value="Cancel" action="{!Cancel}" />
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,25 @@
+<apex:page controller="PositionSelectController">
+	<apex:form >
+		<apex:pageBlock title="Select Position">
+			<apex:pageblockSection columns="1">
+				<apex:pageblockTable value="{!psList}" var="p">
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink value="Select /Unselect"
+								action="{!selectRecords}" />
+						</apex:facet>
+						<apex:inputCheckbox value="{!ch}" />
+					</apex:column>
+					<apex:column value="{!p.name}" />
+					<apex:column value="{!p.Department__c}" />
+				</apex:pageblockTable>
+			</apex:pageblockSection>
+			<apex:commandButton value="Show Selected Positions"
+				action="{!showData}" />
+			<apex:pageBlockTable value="{!sList}" var="s">
+				<apex:column value="{!s.name}" />
+				<apex:column value="{!s.Department__c}" />
+			</apex:pageBlockTable>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

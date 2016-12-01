@@ -1,0 +1,50 @@
+<apex:page standardController="Account" extensions="acc_controller">
+	<apex:form >
+		<apex:actionstatus startText="processing..." id="statusBar"></apex:actionstatus>
+		<apex:pageblock >
+
+			<!--<apex:commandLink value="First"/>-->
+            <!-- 
+			<apex:commandButton value="Next" reRender="pTable" status="statusBar" action="{!next}" />&nbsp;&nbsp;
+     		<apex:commandButton value="Previous" reRender="pTable" status="statusBar" action="{!previous}" rendered="{!hasPrevious}" />
+			-->			
+			<!--<apex:commandLink value="Last"/>     -->
+
+			<apex:commandbutton value="Process Selected" action="{!Process}" rerender="finalResult" status="statusBar" />
+			
+            <apex:outputPanel id="pTable">
+				<apex:pageblockTable value="{!accWrapList2}" var="a">
+					<apex:column headerValue="Select">
+						<apex:inputCheckbox value="{!a.flag}">
+							<apex:actionSupport event="onclick" rerender="pTable" status="statusBar" action="{!saveList}" />
+						</apex:inputCheckbox>
+					</apex:column>
+					<apex:column value="{!a.acc.name}" />
+				</apex:pageblockTable>
+			</apex:outputPanel>
+
+			<!--<apex:commandLink value="First"/>-->
+			<apex:commandButton value="Previous" reRender="pTable" rendered="{!hasPrevious}" status="statusBar" action="{!previous}"/>
+     		<apex:commandButton value="Next" reRender="pTable" rendered="{!hasNext}" status="statusBar" action="{!next}" />
+            <!--<apex:commandLink value="Last"/>     -->
+			
+            <!-- Selected Accounts -->
+			<apex:outputPanel id="finalResult">
+                <apex:pageBlockTable value="{!accWrapList3}" var="ac" rendered="{!showFinalResult}">
+                    <apex:column value="{!ac.acc.name}" />
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+
+		</apex:pageblock>
+        <!-- Selected Accounts -->
+        <!--
+        <apex:pageblock >
+            <apex:outputPanel id="finalResult">
+                <apex:pageBlockTable value="{!accWrapList3}" var="ac" rendered="{!showFinalResult}">
+                    <apex:column value="{!ac.acc.name}" />
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+        </apex:pageblock>
+		-->
+	</apex:form>
+</apex:page>

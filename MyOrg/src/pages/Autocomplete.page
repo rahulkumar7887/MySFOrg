@@ -1,0 +1,5 @@
+<apex:page >
+<!--
+<c:Autocomplete objectname="User" input_id="{!$Component.ProdId2}" numberOfResultsToDisplay="15" rendered="{!IF(f.fieldName=='OwnerId' && !searchQueue,true,false)}"/>
+-->
+</apex:page>

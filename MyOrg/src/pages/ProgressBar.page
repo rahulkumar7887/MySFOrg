@@ -1,0 +1,26 @@
+<apex:page standardController="Account" recordSetVar="acc">
+	<apex:form >
+		<apex:pageBlock >
+			<apex:pageBlockTable value="{!acc}" var="a">
+				<apex:column headerValue="Account Name">
+					<apex:commandLink value="{!a.name}">
+						<apex:actionSupport event="onclick" status="image"
+							reRender="detailpage">
+							<apex:param value="{!a.id}" id="selectedRecord" name="accountid" />
+						</apex:actionSupport>
+						<apex:actionStatus id="image">
+							<apex:facet name="start">
+								<apex:image url="{!$Resource.Loading}" />
+							</apex:facet>
+						</apex:actionStatus>
+					</apex:commandLink>
+				</apex:column>
+
+			</apex:pageBlockTable>
+		</apex:pageBlock>
+		<apex:outputPanel id="detailpage">
+			<apex:detail subject="{!$CurrentPage.parameters.accountid}"
+				relatedList="true" />
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>

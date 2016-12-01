@@ -1,0 +1,3 @@
+<apex:page language="{!$CurrentPage.parameters.lang}"> <!-- language="{!userlang}"> -->
+    <apex:outputLabel value="{!$ObjectType.Account.fields.Name.label}"  />
+</apex:page>

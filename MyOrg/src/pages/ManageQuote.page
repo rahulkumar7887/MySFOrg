@@ -1,0 +1,36 @@
+<apex:page name="ManageQuote" controller="ManageQuoteController" id="thisPage" tabStyle="Opportunity">
+	<script type="text/javascript">
+        function init() {
+            if ('{!quoteCreationError}' == 'false' && '{!quoteCreated}' == 'false')
+                createQuote();
+        }
+        window.onload = init;
+    </script>
+    <apex:form >
+        <apex:actionFunction name="createQuote" action="{!createQuote}"  rerender="outputBlock, quoteBlock" status="createStatus" />
+        <apex:sectionHeader title="Manage Quote" subtitle="{!opportunityRef.Name}"/>
+        
+        <apex:outputPanel id="outputBlock">
+            <apex:actionStatus id="createStatus">
+                <apex:facet name="start">
+                    <apex:pageBlock >
+                        <apex:outputText >Creating quote. Please wait...</apex:outputText>
+                    </apex:pageBlock>
+                </apex:facet>
+            </apex:actionStatus>
+        </apex:outputPanel>
+
+        <apex:outputPanel id="quoteBlock">
+            <apex:pageBlock id="errorBlock" title="Error" rendered="{!quoteCreationError}">
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton value="Go Back" action="{!goback}" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection columns="1">
+                    <apex:outputText value="{!errorMessage}"/>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:iframe src="{!quoteUrl}" scrolling="true" id="quoteFrame" rendered="{!quoteCreated}"/>
+        </apex:outputPanel>
+        
+    </apex:form>
+</apex:page>

@@ -1,0 +1,14 @@
+<apex:page cache="true" Controller="renderedAsXMLController" contentType="application/xml" showHeader="false">
+
+    <html xmlns="http://www.w3.org/1999/html" xml:lang="en" lang="en">
+        <body>
+            <apex:form >
+                <apex:pageblock id="exportDocs">
+                    <apex:pageBlockTable value="{!exportValues}" var="actual">
+                        <apex:column headerValue="Id" value="{!actual.Id}"/>
+                    </apex:pageBlockTable>
+                </apex:pageblock>
+            </apex:form>
+        </body>
+    </html>
+</apex:page>

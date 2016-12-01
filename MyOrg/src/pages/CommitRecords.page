@@ -1,0 +1,20 @@
+<apex:page controller="CommitRecordsContr">
+<apex:form >
+    <apex:pageblock >
+        <apex:pageblockTable value="{!commitList}" var="c">
+            <apex:column value="{!c.Acc__c}"/>
+            <apex:column headerValue="Commit Date">
+                <apex:outputField value="{!c.Commit_Date__c}">
+                    <apex:inlineEditSupport />
+                </apex:outputField>
+            </apex:column>  
+            <apex:column headerValue="Week">
+                <apex:outputField value="{!c.Week__c}">
+                    <apex:inlineEditSupport />
+                </apex:outputField>
+            </apex:column>  
+        </apex:pageblockTable>
+        <apex:commandButton value="Update Records" action="{!updateRecords}"/>
+    </apex:pageblock>
+</apex:form>  
+</apex:page>

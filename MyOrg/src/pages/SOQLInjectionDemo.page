@@ -1,0 +1,7 @@
+<apex:page controller="SOQLInjectionDemo">
+	<apex:form >
+		<apex:outputText value="Enter Name" />
+		<apex:inputText value="{!name}" />
+		<apex:commandButton value="Find" action="{!query}" />
+	</apex:form>
+</apex:page>

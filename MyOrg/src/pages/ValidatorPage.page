@@ -1,0 +1,17 @@
+<apex:page controller="FWController">
+    <apex:form >
+        <apex:pageBlock title="UIFramework in VF Pages">
+            <apex:outputText style="font-size:30px" value="{!oname}"></apex:outputText>
+            <apex:pageblockTable value="{!pList}" var="p">
+                <apex:column value="{!p.name}"/>
+                <apex:column value="{!p.Department__c}"/>
+                <apex:column value="{!p.Status__c}"/>
+            </apex:pageblockTable>
+            <br/>
+            <apex:inputText size="40" value="{!ename}"/>
+            &nbsp;
+            <apex:outputText style="font-size:40px;color:red" value="{!msg}"></apex:outputText>
+            <apex:commandButton value="show" action="{!show}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

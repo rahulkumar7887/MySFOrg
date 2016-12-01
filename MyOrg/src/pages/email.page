@@ -1,0 +1,15 @@
+<apex:page Controller="email">
+  <apex:form >
+      <apex:pageBlock >
+          <apex:pageblockSection >
+              <apex:outputText value="To"></apex:outputText>
+              <apex:inputText value="{!to}" />
+              <apex:outputText value="Subject"></apex:outputText>
+              <apex:inputText id="Subject" value="{!subject}"/>
+              <apex:outputText value="Body"></apex:outputText>
+              <apex:inputTextarea id="Body" value="{!body}" />              
+          </apex:pageblockSection>
+          <apex:commandButton Value="send" action="{!sendEmail}"/>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,33 @@
+<apex:page standardController="Account" tabStyle="Account"> 
+<head>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+ </head>   
+    <script>
+       $(function(){
+        $('.datepicker').datepicker({
+             minDate: 0
+         }).on('changeDate', function(ev){
+            $('#sDate1').text($('#datepicker').data('date'));
+            $('#datepicker').datepicker('hide');
+        });
+        </script>
+    <apex:form >
+    
+        <apex:inputField id="Name" label="Account Name" value="{!Account.Name}" />
+        <apex:inputField value="{!Account.name}"/>
+       <!-- 
+        Date: <apex:inputText id="datePicker" value="{!Account.SLAExpirationDate__c}" />
+        -->
+        
+        <apex:inputText styleClass="cssbody" value="{!Account.SLAExpirationDate__c}" size="10" id="demo" onfocus="DatePicker.pickDate(false, 'myPage:myForm:demo', false);" />
+  
+        
+        <apex:inputText id="datepicker" styleClass="datepicker" value="{!Account.SLAExpirationDate__c}" style="width:260px;"/>
+        
+        <apex:commandButton value="Save" action="{!save}"/>
+        
+    </apex:form>
+</apex:page>

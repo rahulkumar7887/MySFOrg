@@ -1,0 +1,55 @@
+<apex:page StandardController="Class__c" tabStyle="Class__c" recordSetVar="clsRec" extensions="CloneClassContrl">
+<script>
+function ClosePage()
+{
+    var closeorNot = confirm('Do you really want to close this page?');
+    if(closeorNot == true){
+        self.close();
+    }
+}
+</script>
+<html>
+    <body>
+    <apex:sectionHeader title="Class clone Wizard" subtitle="Batch Class Cloning"/>
+        <apex:form id="cloneform" >
+        <apex:pageMessages ></apex:pageMessages>
+            <apex:pageBlock title="Select Parameters to Clone" mode="edit" id="cloneblock" >          
+                <apex:pageBlockSection title="List Of Selected Class" columns="1" id="clonesce" >
+                    <apex:pageBlockTable value="{!lstClass}" var="cavl_lst">
+                        <apex:column headerValue="Class Record ID">
+                            <apex:outputLink value="/{!cavl_lst.Id}">{!cavl_lst.name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!cavl_lst.Available__c}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>  
+                <apex:pageBlocksection title="Information" id="clonesec2">
+                    <apex:inputfield value="{!Class__c.Available__c}" required="true"/>                              
+                </apex:pageBlocksection>
+                    <apex:commandButton value="Clone Class Records"  style="margin:1em;margin-left:35em;" action="{!CloneClass}" id="create_button" reRender="excptionlist,create_button2,create_button3"/>
+                    <apex:commandButton value="Cancel" onClick="ClosePage();" style="align:middle;" />
+            </apex:pageBlock>
+            <!--
+            <apex:pageBlock id="excptionlist">
+            <apex:pageBlockSection id="noMatchCommercialSec2" rendered="{!flagException}" collapsible="false" columns="1"> 
+                <apex:pageBlockSection id="noMatchCommercialSec" title="Client avails will not be clonned for the selected account" columns="1" collapsible="false" >
+                    <apex:pageBlockTable value="{!lstClass}" var="cavl_lst">
+                        <apex:column headerValue="Client Avail Record ID">
+                            <apex:outputLink value="/{!cavl_lst.clientAvail.Id}">{!cavl_lst.clientAvail.name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!cavl_lst.clientAvail.Available__c}"/>
+                        <apex:column value="{!cavl_lst.reasonMsg}" headerValue="Reason"/>
+                    </apex:pageBlockTable>
+                                      
+                 </apex:pageBlockSection>                
+            </apex:pageBlockSection> 
+                <apex:outputPanel id="NoMIsmatchFound" rendered="{!flagNoException}"> 
+                 <apex:outputText ><center><b>All selected client avails can be cloned</b></center></apex:outputText><br></br>
+                 <apex:commandButton value="Clone" style="margin:1em; margin-left:35em;" id="create_button4" action="{!Okbutton}"/>
+             </apex:outputPanel>
+              <apex:commandButton value="Clone"    action="{!Okbutton}" rendered="{!flagException}" id="create_button2"/> 
+              <apex:commandButton value="Cancel"  action="{!Bulkcancel}"  rendered="{!flagException}" id="create_button3"/> 
+        </apex:pageBlock>   -->
+        </apex:form>
+    </body>
+</html>
+</apex:page>

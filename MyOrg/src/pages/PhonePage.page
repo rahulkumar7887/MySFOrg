@@ -1,0 +1,16 @@
+<apex:page sidebar="false" showHeader="false" controller="btnController">
+	<apex:form >
+		<apex:pageBlock title="Softphone Console">
+			<apex:pageblockSection title="Outbound Phone Screen" columns="1">
+				<apex:outputPanel >
+					<apex:inputtext size="50" label="Phone Number" /> &nbsp; <apex:commandButton value="Dial" />
+				</apex:outputPanel>
+				<apex:outputPanel >
+					<apex:repeat value="{!blist}" var="b">
+						<apex:commandButton value="{!b}" /> &nbsp;              
+                  </apex:repeat>
+				</apex:outputPanel>
+			</apex:pageblockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

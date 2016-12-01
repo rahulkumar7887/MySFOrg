@@ -1,0 +1,26 @@
+<apex:page showHeader="false">
+	<script src="/soap/ajax/18.0/connection.js"></script>
+	<script src="/soap/ajax/18.0/apex.js"></script>
+	<script>
+    function insertCandidate(op,fn,ln,ct){
+        var fname = document.getElementById(fn).value;
+        var lname = document.getElementById(ln).value;
+        var cityval = document.getElementById(ct).value;
+        sforce.connection.init('{!$Api.session_id}','{!$Api.partner_server_url_140}');
+        var r = sforce.apex.execute('Display','candidateValidate',{firstname:fname,lastname:lname,city:cityval});
+        document.getElementById(op).innerHTML=r;
+    }
+</script>
+	<apex:form >
+		<apex:pageBlock title="Candidate Details">
+			<apex:pageBlockSection columns="1" title="Information">
+				<apex:inputText size="20" label="First Name" id="fn" />
+				<apex:inputText size="20" label="Last Name" id="ln" />
+				<apex:inputText size="20" label="City" id="ct" />
+				<apex:outputPanel styleClass="btn"
+					onclick="insertCandidate('{!$Component.op}','{!$Component.fn}','{!$Component.ln}','{!$Component.ct}')">Insert</apex:outputPanel>
+				<apex:outputText id="op" style="font-size:50px;color:red;"></apex:outputText>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

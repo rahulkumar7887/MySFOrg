@@ -1,0 +1,21 @@
+<apex:page controller="chkboxOnClick">
+  <apex:form >
+      <apex:pageblock >
+          <apex:pageBlockSection >
+              <apex:selectList multiselect="false" size="1">
+                  <apex:selectOption itemLabel="select.." itemValue="" />
+                  <apex:selectOption itemLabel="Select 1" itemValue=""/>
+                  <apex:selectOption itemLabel="Select 2" itemValue=""/> 
+              <apex:actionSupport event="onchange" reRender="pg" action="{!find}"/>
+              </apex:selectList>
+
+        <apex:panelGroup id="pg">
+            <apex:outputPanel id="Button" rendered="{!temp}">
+                <apex:commandButton value="Continue"/>
+            </apex:outputPanel>
+        </apex:panelGroup>
+    
+        </apex:pageBlockSection>
+    </apex:pageblock>
+  </apex:form>
+</apex:page>

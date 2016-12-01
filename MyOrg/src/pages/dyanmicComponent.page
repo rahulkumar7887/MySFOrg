@@ -1,0 +1,9 @@
+<apex:page showHeader="false" controller="DynamicController">
+    <apex:form >
+        <apex:pageBlock title="Dynamic Component Demo" >
+            <apex:commandButton value="Change Component" action="{!changesize}"/>
+            <br/><br/>
+            <apex:dynamicComponent componentValue="{!t1}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

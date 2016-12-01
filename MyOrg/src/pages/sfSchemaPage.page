@@ -1,0 +1,28 @@
+<apex:page showHeader="false" controller="SFController">
+    <apex:form >
+        <apex:pageBlock title="Your Organization Metadata">
+            <apex:pageBlockSection columns="4">
+                <apex:commandButton value="Display All Objects" action="{!showObjects}"/>
+                <apex:dataTable value="{!objList}" var="o" border="5" cellspacing="5" cellpadding="5">
+                    <!--<apex:column headerValue="Objects" value="{!o}"/>-->
+                    <apex:column headerValue="Objects">
+                    <apex:commandLink value="{!o}" action="{!showFields}">
+                        <apex:param name="oname" value="{!o}" />
+                    </apex:commandLink>
+                    </apex:column>
+                </apex:dataTable>
+                <apex:dataTable value="{!fldList}" var="f" border="5" cellpadding="5" cellspacing="5">
+                    <!-- <apex:column headerValue="Fields in Object" value="{!f}"/> -->
+                    <apex:column headerValue="Fields in Object">
+                    <apex:commandLink value="{!f}" action="{!showFieldDetails}">
+                        <apex:param name="fname" value="{!f}"/>
+                    </apex:commandLink>
+                    </apex:column>
+                </apex:dataTable>
+                <apex:dataTable value="{!fldDetails}" var="fd" border="5" cellpadding="5" cellspacing="5">
+                    <apex:column headerValue="Field Details" value="{!fd}"/>
+                </apex:dataTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

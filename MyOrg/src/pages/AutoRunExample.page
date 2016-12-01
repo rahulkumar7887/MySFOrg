@@ -1,0 +1,5 @@
+<apex:page standardController="Position__c"
+	extensions="AutoRunController" action="{!autoRun}">
+	<apex:pageMessages ></apex:pageMessages>
+	<apex:sectionHeader title="Auto Running Apex Code" />
+</apex:page>

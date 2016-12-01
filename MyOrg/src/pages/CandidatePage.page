@@ -1,0 +1,11 @@
+<apex:page showHeader="false" controller="CSController">
+	<apex:form >
+		<apex:pageBlock title="Candidate Details">
+			<apex:pageBlockSection columns="1" title="Search">
+				<apex:inputText size="30" label="Enter Email" value="{!cemail}" />
+				<apex:commandButton value="Search Candidate" action="{!show}" />
+				<apex:outputText style="font-size:30px;" value="{!res}"></apex:outputText>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

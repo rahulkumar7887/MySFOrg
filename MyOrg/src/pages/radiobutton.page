@@ -1,0 +1,7 @@
+<apex:page controller="radiobuttonContrl">
+    <apex:form >
+      <apex:actionsupport action="{!openNewPage}" event="onclick"> 
+          <input type="radio" />   
+      </apex:actionSupport>
+    </apex:form>
+</apex:page>

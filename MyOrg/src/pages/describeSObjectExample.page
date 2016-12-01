@@ -1,0 +1,11 @@
+<apex:page controller="AllObjectsinOrg">
+<apex:form >
+    <apex:pageBlock title="Select the fields to clone">
+        <apex:outputlabel value="Object Name" for="ObjPickList"/>
+            <apex:selectList value="{!ObjectSelected}" multiselect="false" id="ObjPickList" size="1">
+               <apex:selectOptions value="{!ObjList}"/>
+               <apex:actionSupport event="onchange"  action="{!fieldsofObject}" rerender="pgblck" />  
+            </apex:selectList><br/><br/>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

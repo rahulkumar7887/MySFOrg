@@ -1,0 +1,11 @@
+<apex:page controller="MyController">
+<apex:form >
+    <apex:pageblock >
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem helpText="{!$ObjectType.Account.fields.Name.InlineHelpText}">
+                <apex:outputField value="{!myAccount.Name}"/>
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageblock>
+</apex:form>
+</apex:page>

@@ -1,0 +1,8 @@
+<apex:page >
+	<apex:form >
+		<apex:commandLink value="Open Position Page"
+			action="{!URLFOR($action.Position__c.new)}">
+
+		</apex:commandLink>
+	</apex:form>
+</apex:page>

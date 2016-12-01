@@ -1,0 +1,24 @@
+<apex:page showHeader="false">
+<script src="/soap/ajax/18.0/connection.js"></script>
+<script src="/soap/ajax/18.0/apex.js"></script>
+<script>
+    function show(op,pn,dp){//added two more para for 2nd task
+        var pname = document.getElementById(pn).value;//added  2nd task
+        var dname = document.getElementById(dp).value;//added 2nd task
+        sforce.connection.init('{!$Api.session_id}','{!$Api.partner_server_url_140}');
+        var r = sforce.apex.execute('Display','showUser',{name:pname,dept:dname});//added two more para for 2nd task
+        document.getElementById(op).innerHTML=r;
+    }
+</script>
+    <apex:form >
+        <apex:pageBlock title="Ajax toolkit for webservice">
+            <apex:pageBlockSection columns="1" title="Position Data">
+                <apex:inputText size="20" label="Position Name" id="pn"/>
+                <apex:inputText size="20" label="Department" id="dp"/>
+                <!--<apex:outputPanel styleClass="btn" onclick="show('{!$Component.op}')">Call Webservice</apex:outputPanel>-->
+                <apex:outputPanel styleClass="btn" onclick="show('{!$Component.op}','{!$Component.pn}','{!$Component.dp}')">Call Webservice</apex:outputPanel>
+                <apex:outputText id="op" style="font-size:50px;color:red;"></apex:outputText>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

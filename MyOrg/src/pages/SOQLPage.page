@@ -1,0 +1,15 @@
+<apex:page showHeader="false" controller="SOQLController">
+	<apex:form >
+		<apex:pageBlock title="Dynamic SOQL Page">
+			<apex:pageBlockSection columns="1">
+				<apex:inputText size="30" label="Enter Object" value="{!objname}" />
+				<apex:inputText size="60" label="Enter Fields" value="{!flds}" />
+				<apex:commandButton value="Display Records" action="{!showData}" />
+				<apex:outputText style="font-style:bold;" value="{!res}"></apex:outputText>
+				<apex:pageBlockTable value="{!rList}" var="r">
+					<apex:column headerValue="Record" value="{!r}" />
+				</apex:pageBlockTable>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

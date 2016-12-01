@@ -1,0 +1,3 @@
+<apex:page >
+  {!$Setup.testHierarchyCustomSetting__c[$Profile.Id].testField__c}
+</apex:page>

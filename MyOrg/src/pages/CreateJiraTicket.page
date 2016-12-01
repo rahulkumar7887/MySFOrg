@@ -1,0 +1,124 @@
+<apex:page controller="CreateJiraTicketContr">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js" />
+    <apex:styleSheet value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+    <style type="text/css">
+        .ui-autocomplete-loading {
+            background: white url("{!$Resource.ui_anim_basic}") right center no-repeat;
+        }
+    </style>
+    <apex:form id="theForm">
+        <apex:pagemessages id="pageMessages" />
+        <apex:pageBlock title="Create New JIRA Ticket">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!fnCreateTicket}" value="Create Ticket"/>
+                <apex:commandButton action="{!cancel}" value="Cancel" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:actionFunction name="updateIssueType" rerender="pbsIssueFields, pageMessages" immediate="true" oncomplete="setupPage();">
+                <apex:param name="issueType" assignTo="{!issue.Issue_Type__c}" value="" />
+            </apex:actionFunction>
+            <apex:pageBlockSection id="pbsIssueFields">
+                <apex:inputField value="{!issue.Issue_Type__c}" onchange="updateIssueType(this.value)" required="true" />
+                <apex:inputField value="{!issue.Reporters_Manager__c}" styleClass="reportersManager" />
+                <apex:inputField value="{!issue.Summary__c}" required="true" />
+                <apex:inputField value="{!issue.Department__c}" required="true"  />
+                <apex:inputField value="{!issue.Priority__c}" />
+                <apex:inputField value="{!issue.Team__c}" required="true" />
+                <apex:inputField value="{!issue.Employer_Console_Link__c}" required="true" rendered="{!issue.Issue_Type__c != null}" />
+                <apex:inputField value="{!issue.Client_Name__c}" rendered="{!issue.Issue_Type__c != null && issue.Issue_Type__c != 'COBRA Takeover'}"
+                    required="true" />
+                <apex:inputField value="{!issue.Employee_Console_Link__c}" required="true" 
+                    rendered="{!OR(issue.Issue_Type__c == 'Triage', issue.Issue_Type__c == 'Exception')}" />
+                <apex:inputField value="{!issue.Payroll_Provider__c}" rendered="{!IF(CONTAINS(issue.Issue_Type__c, 'Sync'), true, false)}" />
+                <apex:inputField value="{!issue.Labels__c}"  rendered="{!issue.Issue_Type__c != null && NOT(CONTAINS(issue.Issue_Type__c, 'Sync'))}" 
+                    styleClass="issueLabels" />
+                <apex:inputField value="{!issue.Lines_of_Coverage__c}" rendered="{!issue.Issue_Type__c == 'Triage'}" />
+                <apex:inputField value="{!issue.Exception_Type__c}" rendered="{!issue.Issue_Type__c == 'Exception'}" required="true" />
+                <apex:inputField value="{!issue.COBRA_Census_Console_Link__c}" rendered="{!issue.Issue_Type__c == 'COBRA Takeover'}" required="true" />
+                <apex:inputField value="{!issue.Company_COBRA_Type__c}" rendered="{!issue.Issue_Type__c == 'COBRA Takeover'}" required="true" />
+                <apex:inputField value="{!issue.Due_Date__c}" rendered="{!issue.Issue_Type__c == 'COBRA Takeover'}" required="true" />
+                <apex:inputField value="{!issue.Cooling_Off_Period__c}" rendered="{!issue.Issue_Type__c == 'COBRA Takeover'}" />
+                <apex:inputField value="{!issue.Current_COBRA_Administrator__c}" rendered="{!issue.Issue_Type__c == 'COBRA Takeover'}" />
+                <apex:inputField value="{!issue.Link_to_Sync_Log__c}" rendered="{!issue.Issue_Type__c == 'Sync Error'}" required="true"/>
+                <apex:inputField value="{!issue.Temp_Credentials_or_Email_Address__c}"
+                    rendered="{!issue.Issue_Type__c == 'Sync Request'}"/>
+                <apex:outputText rendered="{!NOT(CONTAINS(issue.Issue_Type__c, 'Sync'))}" />
+                <apex:inputField value="{!issue.Description__c}" required="{!issue.Issue_Type__c != 'COBRA Takeover'}" 
+                    rendered="{!issue.Issue_Type__c != null}" style="width: 300px"/>
+                <apex:inputField value="{!issue.Components__c}" required="true" rendered="{!issue.Issue_Type__c != null}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <script type="text/javascript">
+        $(function(){
+            setupPage();
+        });
+        
+        function setupPage(){
+            setAutocomplete();
+            setTags();
+        }
+        
+        function setAutocomplete(){
+            $('.reportersManager').autocomplete({
+                minLength: 2,
+                source: function(request, response){
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CreateJiraTicketContr.getManagersRemote}', $('.reportersManager').val(),
+                        function(result, event){
+                            if(event.status){
+                                response($.parseJSON(result));
+                            }
+                            else if (event.type == 'exception'){
+                                console.debug('message: ' + event.message);
+                                console.debug('where: ' + event.where);
+                            }
+                            else{ // errors
+                                //event.message;
+                                console.debug('message: ' + event.message);
+                            }
+                        },
+                        {escape: false}
+                    );
+                }
+            });
+        }
+        
+        function setTags(){
+            var availableTags = [<apex:repeat var="s" value="{!label_suggestions}">"{!s}",</apex:repeat>""];
+            
+            function split(val){
+                return val.split(/,\s*/);
+            }
+            
+            function extractLast(term){
+                return split(term).pop();
+            }
+            
+            $(".issueLabels").bind("keydown", function(event){
+                if(event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active){
+                    event.preventDefault();
+                }
+            })
+            .autocomplete({
+                minLength: 1,
+                source: function(request, response){
+                    response($.ui.autocomplete.filter(availableTags, extractLast(request.term)));
+                },
+                focus: function(){
+                    return false;
+                },
+                select: function(event, ui){
+                    var terms = split(this.value);
+                    terms.pop();
+                    terms.push(ui.item.value);
+                    terms.push("");
+                    this.value = terms.join(", ");
+                    return false;
+                },
+                delay: 0
+            });
+        }
+    </script>
+</apex:page>

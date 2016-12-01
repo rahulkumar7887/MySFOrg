@@ -1,0 +1,12 @@
+<apex:page standardController="Account" extensions="testController">
+<apex:pageMessages ></apex:pageMessages>
+<apex:form >
+    <apex:pageblock >
+        <apex:pageblockSection title="SignUp Page" columns="1">
+            <apex:commandButton value="Submit" action="{!saveAndReject}"/>
+            <!-- <apex:commandButton value="cancel" action="{!saveAndReject}"/> -->
+            
+        </apex:pageblockSection>
+    </apex:pageblock>
+</apex:form>    
+</apex:page>

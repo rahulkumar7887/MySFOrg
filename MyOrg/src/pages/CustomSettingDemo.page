@@ -1,0 +1,13 @@
+<apex:page controller="CustomSettingDemo" sidebar="false" >
+<apex:form >
+    <apex:pageblock >
+        <apex:pageblockTable value="{!name}" var="c">
+            <apex:column value="{!c.Name}"/>        
+            <apex:column value="{!c.Availability__c}"/>
+        </apex:pageblockTable>
+        <apex:pageblockTable value="{!cName}" var="cc">
+            <apex:column value="{!cc}"/>
+        </apex:pageblockTable>
+    </apex:pageblock>
+</apex:form>
+</apex:page>

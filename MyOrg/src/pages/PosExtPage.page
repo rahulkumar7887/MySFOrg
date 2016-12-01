@@ -1,0 +1,20 @@
+<apex:page standardController="Position__c" extensions="PosexController">
+	<apex:form >
+		<apex:pageBlock title="Position Data">
+			<apex:pageBlockSection title="Information">
+				<apex:inputField value="{!Position__c.name}" />
+				<apex:inputField value="{!Position__c.Department__c}" />
+				<apex:inputField value="{!Position__c.Min_Pay__c}" />
+				<apex:inputField value="{!Position__c.Max_Pay__c}" />
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="Compensation Calculator" columns="1">
+				<apex:commandButton value="Calculate" action="{!calc}" />
+				<apex:inputText size="30" disabled="true" value="{!hra}" label="HRA" />
+				<apex:inputText size="30" disabled="true" value="{!allowance}"
+					label="allowance" />
+				<apex:inputText size="30" disabled="true" value="{!grossPay}"
+					label="grossPay" />
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

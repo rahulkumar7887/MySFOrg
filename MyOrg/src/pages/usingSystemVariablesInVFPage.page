@@ -1,0 +1,3 @@
+<apex:page >
+<h1>{!$User.LastName}</h1>
+</apex:page>

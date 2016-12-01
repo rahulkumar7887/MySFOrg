@@ -1,0 +1,17 @@
+<apex:page showHeader="false" controller="RestController">
+    <apex:form >
+        <apex:pageBlock title="Restful Webservice">
+            <apex:pageblockSection columns="1" title="Get Service">
+                <apex:inputText size="30" label="Name" value="{!ename}"/>
+                <apex:commandButton value="Call Rest Service" action="{!show}"/>
+                <apex:outputText style="font-size:40px;font-family:mistral;" value="{!res}"></apex:outputText>
+            </apex:pageblockSection>
+            <apex:pageblockSection columns="1" title="Post Web Service">
+                <apex:inputText size="30" label="UserName" value="{!username}"/>
+                <apex:inputText size="30" label="Password" value="{!pwd}"/>
+                <apex:commandButton value="Login" action="{!loginAction}"/>
+                <apex:outputText style="font-size:40px;font-family:mistral;" value="{!lres}"></apex:outputText>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,4 @@
+<apex:page standardController="Account">
+Welcome {!$User.FirstName} {!$User.LastName}
+<apex:detail inlineEdit="false" relatedList="false"/>
+</apex:page>

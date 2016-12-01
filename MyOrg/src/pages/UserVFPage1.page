@@ -1,0 +1,26 @@
+<apex:page standardController="User" extensions="userController">
+<apex:pageMessages ></apex:pageMessages>
+    <apex:form >
+        <apex:pageBlock title="Select the fields to clone" >
+            
+            
+                <apex:pageBlockTable columns="2" value="{!fieldList}" var="obj" >
+                
+                    <apex:column headerValue="Select">
+                         <apex:inputCheckbox value="{!obj.isSelected}" id="selectedfields"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="Fields" value="{!obj.str}" >
+                    </apex:column>
+                    
+                </apex:pageblockTable>
+            
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Clone" action="{!cloneUser}" />
+                <apex:commandButton value="Cancel" action="#"/>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

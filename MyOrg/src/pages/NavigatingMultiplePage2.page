@@ -1,0 +1,16 @@
+<apex:page standardController="Student__c" extensions="studController">
+	<apex:pageMessages ></apex:pageMessages>
+	<apex:form >
+		<apex:sectionHeader title="" subtitle="" />
+		<apex:pageBlock >
+			<apex:pageBlockSection title="Page1" columns="1">
+				<apex:inputField value="{!Student__c.DOB__c}" />
+				</apex:pageblockSection>
+
+				<apex:pageBlockButtons >
+					<apex:commandButton value="Save Record" action="{!saveRecord}" />
+					<apex:commandButton value="Cancel" action="#" />
+				</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

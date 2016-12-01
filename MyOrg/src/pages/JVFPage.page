@@ -1,0 +1,122 @@
+<apex:page >
+	<apex:form >
+		<apex:pageBlock >
+			<table>
+				<tr>
+					<td><apex:outputLabel value="Key Word"></apex:outputLabel></td>
+					<td><apex:inputText /></td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList></td>
+					<td><apex:inputText /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td><apex:outputLabel value="Key Word"></apex:outputLabel>&nbsp;</td>
+					<td><apex:inputText label="Key Word" />&nbsp;</td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList>&nbsp;</td>
+					<td><apex:inputText /></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td><apex:outputLabel value="Key Word"></apex:outputLabel>&nbsp;</td>
+					<td><apex:inputText label="Key Word" />&nbsp;</td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList>&nbsp;</td>
+					<td><apex:inputText /></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td><apex:outputLabel value="Key Word"></apex:outputLabel>&nbsp;</td>
+					<td><apex:inputText label="Key Word" />&nbsp;</td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList>&nbsp;</td>
+					<td><apex:inputText /></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td><apex:outputLabel value="Key Word"></apex:outputLabel>&nbsp;</td>
+					<td><apex:inputText label="Key Word" />&nbsp;</td>
+					<td><apex:selectList multiselect="false" size="1">
+							<apex:selectOption itemValue="-None-" />
+							<apex:selectOption itemValue="AND" />
+							<apex:selectOption itemValue="OR" />
+						</apex:selectList>&nbsp;</td>
+					<td><apex:inputText /></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td><apex:commandButton value="Search" /></td>
+					<td></td>
+				</tr>
+			</table>
+
+
+			<apex:pageBlockSection >
+
+				<apex:outputLink >Next</apex:outputLink>&nbsp;
+                <apex:outputLink >Previous</apex:outputLink>
+
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+
+
+	</apex:form>
+</apex:page>

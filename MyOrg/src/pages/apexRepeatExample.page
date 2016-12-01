@@ -1,0 +1,15 @@
+<apex:page controller="RepeatController">
+     <apex:form >
+         <apex:pageBlock >
+            <table align="center" >
+                <apex:repeat value="{!RowObjectList}">
+                <tr>
+                    <td><apex:outputLabel value="Key Word"></apex:outputLabel>&nbsp;</td>
+                    <td><apex:inputText />&nbsp;</td>
+                </tr>
+                </apex:repeat> 
+            </table>
+            <apex:commandButton value="AddRow" action="{!addRow}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

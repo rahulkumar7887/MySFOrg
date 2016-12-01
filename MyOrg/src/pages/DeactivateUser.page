@@ -1,0 +1,5 @@
+<apex:page standardController="User" extensions="UserKillController" >
+<apex:form >
+    <center><apex:commandButton value="Kill Button" action="#"/></center>     
+</apex:form>    
+</apex:page>

@@ -1,0 +1,17 @@
+<apex:page standardController="Contact" sidebar="false"
+	showHeader="false" extensions="loginPageController">
+	<apex:pageMessages ></apex:pageMessages>
+	<apex:form >
+		<apex:pageblock >
+			<apex:pageblockSection title="Login Page" columns="1">
+				<apex:inputField id="Username" value="{!Contact.Username__c}" />
+				<apex:inputSecret id="Password" value="{!Contact.Password__c}" />
+
+				<apex:commandButton value="Login" action="{!signIn}" />
+			</apex:pageblockSection>
+
+			<apex:commandLink value="Forgot Passowrd" action="{!forgotPassword}" /> &nbsp; &nbsp;
+        <apex:commandLink value="Sign Up" action="{!signUp}" />
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

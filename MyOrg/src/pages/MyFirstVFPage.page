@@ -1,0 +1,7 @@
+<apex:page sidebar="false">
+	<apex:pageBlock title="MyFirstVFPage">
+		<apex:pageblockSection >
+			<h1>My first Visualforce Example</h1>
+		</apex:pageblockSection>
+	</apex:pageBlock>
+</apex:page>

@@ -1,0 +1,144 @@
+<apex:page Standardcontroller="Book__c"
+	extensions="Book_ApproveRejectCtrl" applyHtmlTag="true"
+	applyBodyTag="true" showHeader="false" sidebar="false">
+	<html xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+<apex:stylesheet value="{!URLFOR($Resource.SLDS0120, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+<apex:includeScript value="{!URLFOR($Resource.Resource_Library, 'js/jquery.min.js')}" />
+<apex:includeScript value="{!URLFOR($Resource.Resource_Library, 'js/angular.min.js')}" />
+
+<script type="text/javascript">
+            
+            angular.module('BookApproveRejectApp', [])
+                .controller('BookApproveRejectCtrl', function($scope) {
+                    $scope.showSpinner = true;
+                    $scope.spinnerText = 'Processing';
+                    $scope.msgText;
+                    $scope.msgSeverity;
+                    $scope.bookRecords;
+                    $scope.actionToPerform;
+                    
+                    $scope.backToBook = function(){
+                        window.location.href="/{!Book__c.Id}";
+                    };
+                    
+                    $scope.getBooks = function(bookId){
+                        console.log('bookId=> ' + bookId);
+                        Book_ApproveRejectCtrl.getBooks(bookId, 
+                            function(result, event){
+                                console.log('result => ' + result);
+                                $scope.bookRecords = result;
+                                console.log('booksRecords=> ', $scope.booksRecords);
+                            }
+                        );
+                    };
+                    
+                $scope.showAlert = function(event){
+    				if(event.target.id == 'Approve')
+                    	actionToPerform = 'Approve';
+                    else
+                        actionToPerform = 'Reject';
+				}
+                
+                 $scope.processApprove = function(bookId) {
+                   console.log('## processApprove --> bookId##' + bookId);
+                   $scope.showSpinner = true;
+                     console.log('## actionToPerform --> bookId##' + actionToPerform);   
+                       Book_ApproveRejectCtrl.processApprove(bookId, actionToPerform,
+                              function(result, event) {
+                                  console.log('##bookId##' + bookId);
+                                  console.log('##actionToPerform##' + actionToPerform);
+                                  
+                                  console.log(result, event);
+                                  if (event.status){
+                                        //$scope.raiseAlert = result.showMessage
+                                        setTimeout(
+                                            function(){
+                                                if(((typeof sforce != 'undefined') && sforce && (!!sforce.one))) {
+                                                    sforce.one.navigateToSObject('{!Book__c.Id}');
+                                                }
+                                                else {
+                                                    window.location.href='/{!Book__c.Id}';
+                                                }
+                                            },
+                                        2000
+                                        );
+                                  }
+                                  else {
+                                        $scope.msgText =event.message;
+                                        $scope.msgSeverity='error';
+                                  }  
+                                  $scope.showSpinner = false;
+                                  $scope.$apply();
+                                  //console.log('==='+$scope.raiseAlert);
+                                  //if(event.status) {
+                                      //$scope.navigateToURL(url);
+                                  //}
+                              }
+                       );
+                };
+            });    
+            </script>
+</head>
+<body>
+	<div class="slds" xmlns:ng="http://angularjs.org" id="ng-app"
+		ng-init="getBooks('{!Book__c.Id}')" ng-app="BookApproveRejectApp"
+		ng-controller="BookApproveRejectCtrl" ng-cloak="ngCloak">
+
+		<div class="slds-page-header" role="banner">
+			<div class="slds-grid">
+				<div class="slds-col slds-has-flexi-truncate">
+					<nav class="slds-m-bottom--xx-small" role="navigation">
+						<p id="bread-crumb-label" class="slds-assistive-text"></p>
+						<ol class="slds-breadcrumb slds-list--horizontal"
+							aria-labelledby="bread-crumb-label">
+							<li class="slds-list__item slds-text-heading--label"><a
+								href="{!URLFOR($Action.Book__c.Tab, $ObjectType.Book__c)}">{!$ObjectType.Book__c.labelPlural}</a>
+							</li>
+							<li class="slds-list__item slds-text-heading--label"><a
+								href="/{!Book__c.Id}">{!Book__c.Name}</a></li>
+						</ol>
+					</nav>
+					<div class="slds-col slds-has-flexi-truncate">
+						<h1 class="slds-text-heading--medium slds-truncate"
+							title="{!$Label.Approve}">{!$Label.Approve}</h1>
+					</div>
+				</div>
+
+				<div class="slds-col slds-no-flex slds-align-bottom">
+					<div class="slds-button-group" role="group">
+						<button class="slds-button slds-button--neutral"
+							ng-click="backToBook()">{!$Label.Back_Button_Label}</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="slds-col slds-col--padded">
+			<table
+				class="slds-table slds-table--bordered slds-table--bordered slds-max-medium-table--stacked-horizontal">
+				<tr>
+					<td style="float: right;">Book Name</td>
+					<td>{!Book__c.Name}</td>
+				</tr>
+
+				<tr>
+					<td style="float: right;">Comment</td>
+					<td><textarea style="margin-left: -50;" id="commentText"
+							cols="45" rows="5" ng-model="bookComments"></textarea></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="slds-button-group slds-button-space-left"
+			style="left: 80px; margin-left: 300px; margin-top: 20px;">
+			<button class="slds-button slds-button--neutral" id="Approve"
+				ng-click="showAlert($event); processApprove('{!Book__c.Id}')">Approve</button>
+			<button class="slds-button slds-button--neutral" id="Reject"
+				ng-click="showAlert($event); processApprove('{!Book__c.Id}')">Reject</button>
+		</div>
+	</div>
+</body>
+	</html>
+</apex:page>

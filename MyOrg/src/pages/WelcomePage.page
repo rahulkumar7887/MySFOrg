@@ -1,0 +1,151 @@
+<apex:page controller="APageController" showHeader="false">
+     <style>
+             .formbody {
+                 padding-right: 225px;
+                        padding-left: 225px;
+             }
+             
+             body{
+               // background-color: lightgrey;
+                //border-style:solid;
+                //border-width:3px;   
+                //border-right-color:#000000;           
+            }
+            
+           h1 {
+                //position: absolute;
+                //left: 300px;
+                //top: 1px;
+                font-family:Lucida Sans Unicode;
+                font-size:200%;
+                text-align: center;
+               
+            }
+           
+            
+            p {
+                //position: absolute;
+                //left: 700px;
+                //top: 100px;
+            }
+            
+            </style>
+            
+            <div class="formbody">
+                <div style="border-style: solid;">
+                   <h1>The Walt Disney Company</h1><br/><br/><br/>
+            
+    <apex:outputPanel id="HeadPanel">
+        <br/><apex:outputText id="Message" value="Thank you for your interest in Disney !" escape="false"></apex:outputText><br/><br/>
+              <apex:outputText id="Test" value="Disney receives many requests for permission to use its Intellectual Property. To save you time and avoid delay, please review the licensing permissions FAQs to make sure you are submitting this request to the right organization. To view the FAQs, please click here." escape="false"></apex:outputText><br/><br/>
+                    <apex:outputText value="Which best describes your profession or interest in making this request: (please check one)"></apex:outputText>
+    
+    </apex:outputPanel><br/>
+    
+  
+          <apex:actionsupport action="{!openNewPage}" event="onclick"> 
+              <input type="radio" />Author or Publisher 
+          </apex:actionSupport><br></br>
+          <apex:actionsupport action="{!openSecondPage}" event="onclick"> 
+              <input type="radio"/>Museum or Gallery 
+          </apex:actionSupport><br></br>
+
+          
+
+    <apex:outputPanel id="TopPanel">
+        <apex:outputText id="Header" value="Are you a . . . (please check one)"></apex:outputText>
+        <apex:form >
+            <apex:selectRadio value="{!topRadio}" layout="pageDirection" >
+                <apex:selectOptions value="{!topRadioOptions}" />
+                <apex:actionSupport event="onclick" rerender="BottomPanel" />
+            </apex:selectRadio>
+        </apex:form>
+    </apex:outputPanel> <!-- End TopPanel-->
+    
+    <apex:outputPanel id="BottomPanel">
+        <apex:outputPanel rendered="{!topRadio == 'Mobile app or game developer'}">
+            <apex:form id="paymentForm">
+                <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+               <apex:outputText id="Test" value="We appreciate your desire to use Disney's characters and other intellectual property in connection with your mobile application.However, Disney is actively developing a variety of mobile applications based on its intellectual property and also has a strategic licensing program in place with select mobile distribution partners. As such, at this time, we are not seeking unsolicited requests for licenses of Disney intellectual property from app developers ."></apex:outputText> 
+            </apex:form>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'YouTube video maker'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test1" value="It is our Company's policy not to allow use of its Intellectual Property for audio/visual works that are not affiliated with our company .">
+            </apex:outputText>
+        </apex:outputPanel>
+       <apex:outputPanel rendered="{!topRadio == 'Reseller or distributor'}">
+           <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test2" value="Regretfully we cannot authorize your proposed use. We must limit use of Disney's intellectual properties to products and services that our company creates or distributes or those activities, projects and services that have a direct relationship with our company. If you think you may have  contacted the wrong connection with this request, please visit department in  disneystudiolicensing.com.">
+            </apex:outputText>
+        </apex:outputPanel>
+            <apex:outputPanel rendered="{!topRadio == 'Muralist'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test3" value="Regretfully we cannot authorize your proposed use. We must limit use of Disney's intellectual properties to products and services that our company creates or distributes or those activities, projects and services that have a direct relationship with our company. If you think you may have  contacted the wrong connection with this request, please visit department in  disneystudiolicensing.com.">
+            </apex:outputText>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'Costume maker'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test4" value="Regretfully we cannot authorize your proposed use. We must limit use of Disney's intellectual properties to products and services that our company creates or distributes or those activities, projects and services that have a direct relationship with our company. If you think you may have  contacted the wrong connection with this request, please visit department in  disneystudiolicensing.com.">
+            </apex:outputText>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'Designer of decals or posters'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test5" value=" Please contact our licensee:"></apex:outputText><br/><br/>
+             <apex:outputText id="t1" value="Blue Mountain Wall Coverings"></apex:outputText><br/>                                   
+             <apex:outputText id="t2" value="15 Akron Road"></apex:outputText><br/>                                   
+             <apex:outputText id="t3" value="Toronto, Ontario M8W IT3"></apex:outputText><br/>                                  
+             <apex:outputText id="t4" value=" Phone Number: (416) 251-1678"></apex:outputText>                                  
+            
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'Performing arts producer, director, or artist'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test6" value="To see what titles are available and for further information on licensing, please contact our licensee:"></apex:outputText><br/><br/>
+             <apex:outputText id="s1" value="Music Theatre International (MTI)"></apex:outputText><br/>                                  
+             <apex:outputText id="s2" value="E-mail: Licensing@MTIshows.com"></apex:outputText><br/>                                   
+             <apex:outputText id="s3" value=" Phone Number: (212) 541-4684"></apex:outputText><br/>                                
+             <apex:outputText id="s4" value="Or visit their website:"></apex:outputText><br/>                                  
+             <apex:outputText id="s5" value="www.MTIshows.com"></apex:outputText>                                   
+             
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'Cake designer or baker'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test7" value="Please contact our licensee:"></apex:outputText><br/><br/>
+            <apex:outputText id="q1" value="DecoPac, 3500 Thurston Avenue"></apex:outputText><br/>                                    
+            <apex:outputText id="q2" value="Anoka, MN 55303"></apex:outputText><br/>                                    
+            <apex:outputText id="q3" value="Phone Number: 800-332-6722"></apex:outputText><br/>                                    
+            <apex:outputText id="q4" value="Or visit their website: www.decopac.com"></apex:outputText>                                     .
+                                                
+            
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'I have a great new idea for Disney'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test8" value="It is our Company’s policy not to accept unsolicited submissions of creative  material, including, but not limited to, scripts, artwork, and product prototypes.">
+            </apex:outputText>
+        </apex:outputPanel>
+              <apex:outputPanel rendered="{!topRadio == 'I want to make a T-shirt'}">
+                    <apex:outputText value="NOTE :  "></apex:outputText><br/><br/> 
+                    <apex:outputText id="Test9" value="For personalized apparel, please visit : "></apex:outputText><br/><br/>
+                    <apex:outputText id="w1" value=" www.disneystore.com Personalization Shop ."></apex:outputText>                                       
+                    
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'Church or group seeking a public screening'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test10" value="Please contact our licensing agent"></apex:outputText><br/><br/>
+            <apex:outputText id="p1" value="Swank Motion Pictures"></apex:outputText><br/>                                       
+            <apex:outputText id="p2" value="10795 Watson Road"></apex:outputText><br/>                                        
+            <apex:outputText id="p3" value="St. Louis, Missouri 63127-1012"></apex:outputText><br/>                                        
+            <apex:outputText id="p4" value="http://www.swank.com/contact-us-form"></apex:outputText>                                         
+            
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!topRadio == 'Other, not listed above'}">
+            <apex:outputText value="NOTE :  "></apex:outputText><br/><br/>
+            <apex:outputText id="Test11" value=" ' Thanks for showing interest in Disney. ' ">
+            </apex:outputText>
+        </apex:outputPanel>
+  
+    </apex:outputPanel>
+</div>
+
+    </div>
+</apex:page>

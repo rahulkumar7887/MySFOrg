@@ -1,0 +1,33 @@
+<apex:page standardController="Candidate__c" recordSetVar="cList">
+	<apex:form >
+		<apex:sectionHeader title="Candidate" subtitle="Quick Refernece Page" />
+		<apex:pageBlock >
+			<apex:pageBlockSection title="Cadidate List">
+				<apex:actionRegion >
+					<apex:dataTable border="5" cellspacing="3" cellpadding="3"
+						value="{!cList}" var="c" rows="10">
+						<apex:column headerValue="Candidtae ID" value="{!c.id}" />
+						<apex:column headerValue="Candidtae FirstName">
+							<apex:commandLink value="{!c.First_Name__c}" reRender="op">
+								<apex:param name="cid" value="{!c.id}" />
+							</apex:commandLink>
+						</apex:column>
+						<apex:column headerValue="Candidtae LastName"
+							value="{!c.Last_Name__c}" />
+						<apex:column headerValue="Candidtae City" value="{!c.City__c}" />
+						<apex:column headerValue="Candidtae State"
+							value="{!c.State_Province__c}" />
+					</apex:dataTable>
+				</apex:actionRegion>
+				<apex:commandButton value="Next Page" action="{!next}" />
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <apex:commandButton value="Previos Page"
+					action="{!previous}" />
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+	<apex:outputPanel id="op">
+		<apex:detail subject="{!$CurrentPage.parameters.cid}"
+			relatedList="false" />
+	</apex:outputPanel>
+</apex:page>

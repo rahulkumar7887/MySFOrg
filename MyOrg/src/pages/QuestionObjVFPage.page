@@ -1,0 +1,45 @@
+<apex:page standardController="Question__c" extensions="QuestionCtrl">
+<apex:pageMessages ></apex:pageMessages>
+    <apex:form >
+        <apex:sectionHeader title="Question" subtitle="New Question" />
+        <apex:pageBlock >
+            
+            <!-- Section 1 -->
+            <apex:pageblockSection title="Ping Process (Core Criteria)" >
+                <apex:inputField value="{!Question__c.Was_the_ping_process_followed__c}"/>
+            </apex:pageblockSection>
+            
+            <!-- Section II -->
+            <apex:pageblockSection title="Case Comments - External (Core Criteria)">
+                
+                <apex:outputText value="{!$Label.Q2}"/>
+                <apex:selectList multiselect="false" size="1" id="Q2" value="{!Q2}">
+                    <apex:selectOption itemLabel="--None--" itemValue=""/>
+                    <apex:selectOption itemLabel="Yes" itemValue=""/>
+                    <apex:selectOption itemLabel="No" itemValue=""/>
+                </apex:selectList>
+                
+                <apex:outputText value="{!$Label.Q3}"/>
+                <apex:selectList multiselect="false" size="1" id="Q3" value="{!Q3}">
+                    <apex:selectOption itemLabel="--None--" itemValue=""/>
+                    <apex:selectOption itemLabel="Yes" itemValue=""/>
+                    <apex:selectOption itemLabel="No" itemValue=""/>
+                </apex:selectList> 
+                 
+            </apex:pageblockSection>
+            
+            <!-- Section III -->
+            <!--
+            <apex:pageblockSection title="Case Comments - External (Core Criteria)">
+                <apex:outputText value="{!$Setup.testHierarchyCustomSetting__c.X11__c}"/>
+            </apex:pageblockSection> -->
+            
+            <!-- Page Buttons -->
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!saveQuestionRecords}" />
+                <apex:commandButton value="Cancel" action="{!cancel}" />
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>  
+    </apex:form>
+</apex:page>

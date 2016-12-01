@@ -1,0 +1,12 @@
+<apex:page standardController="Account" showHeader="false">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem HelpText="{!$ObjectType.account.fields.Active__c.inlineHelpText}">
+                {!$ObjectType.Account.fields.Active__c.label}
+                <apex:inputField value="{!Account.Active__c}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

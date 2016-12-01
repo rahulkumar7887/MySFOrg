@@ -1,0 +1,5 @@
+<apex:page >
+    <apex:form >    
+        <apex:commandLink target="https://na16.salesforce.com/01Zj0000000XWSZ" />
+    </apex:form>
+</apex:page>

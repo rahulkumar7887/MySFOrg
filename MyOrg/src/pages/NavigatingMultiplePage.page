@@ -1,0 +1,17 @@
+<apex:page standardController="Student__c" extensions="studController">
+	<apex:pageMessages ></apex:pageMessages>
+	<apex:form >
+		<apex:sectionHeader title="" subtitle="" />
+		<apex:pageBlock >
+			<apex:pageBlockSection title="Page1" columns="2">
+				<apex:inputField value="{!Student__c.Name}" />
+				<apex:inputField value="{!Student__c.Class__c}" />
+				</apex:pageblockSection>
+
+				<apex:pageBlockButtons >
+					<apex:commandButton value="Next" action="{!showNext}" />
+					<apex:commandButton value="Cancel" action="#" />
+				</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

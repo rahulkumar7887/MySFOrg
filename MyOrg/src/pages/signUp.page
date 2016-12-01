@@ -1,0 +1,22 @@
+<apex:page standardController="Contact" sidebar="false" extensions="signUpController">
+<apex:pageMessages ></apex:pageMessages>
+<apex:form >
+    <apex:pageblock >
+        <apex:pageblockSection title="SignUp Page" columns="1">
+            <apex:inputField id="Name" value="{!Contact.FirstName}"/>
+            username
+            <apex:inputText id="name1" value="{!username}"/>
+            <apex:inputField id="Username" value="{!Contact.Username__c}"/>
+            <apex:inputField id="Email" value="{!Contact.Email}"/>
+            <apex:inputField id="Password" value="{!Contact.Password__c}"/>
+            
+            <apex:commandButton value="Submit"/>
+            
+            <apex:outputPanel rendered="true"> 
+                {!username}          
+            
+            </apex:outputPanel>
+        </apex:pageblockSection>
+    </apex:pageblock>
+</apex:form>    
+</apex:page>
