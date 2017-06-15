@@ -1,0 +1,57 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for WB Salesforce Projects - BEGIN                                                             -->
+<!--    Author : Pradeep Singh - Cognizant    Last Modified Date : 05/04/16                                               -->
+<!--    *******************************************************************************************************************-->
+
+<project name="salesforce" default="deployCodeCheckOnly" basedir="." xmlns:sf="antlib:com.salesforce">
+<property file="${basedir}/build.properties"/>
+<property environment="env"/>
+
+  <!-- Define salesforce Ant Jar-->
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    <classpath>
+      <pathelement location="${basedir}/lib/ant-salesforce.jar" />
+    </classpath>
+  </taskdef>
+  
+  <!-- ***************************************************************************** -->
+  <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+  <!-- ***************************************************************************** -->
+
+  <!--<import file="${basedir}/lib/deployment.xml"/>
+  <import file="${basedir}/lib/package_generator.xml"/>-->
+  <!-- ***************************************************************************** -->
+  <!-- Recreate the deployment directory and retrieve  meta-data from your org     -->
+  <!-- ***************************************************************************** -->
+  <!-- ***************************************************************************** -->
+  <!-- Deploy the meta-data from code Repository to salesforce your org     -->
+  <!-- ***************************************************************************** -->
+<target name="deployment">
+    <echo level="info">Performing the deploy</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      ignoreWarnings="true"
+      deployRoot="src" 
+	  testLevel="NoTestRun" />
+  </target>
+  
+  <target name="deployCodeCheckOnly">
+      <sf:deploy username="${sf.username}" 
+	  password="${sf.password}"
+	  serverurl="${sf.serverurl}" 
+	  maxPoll="${sf.maxPoll}" 
+	  deployRoot="src" 
+	  checkOnly="true"
+      testlevel="RunLocalTests"/>
+    </target>
+  
+  <target name="proxy">
+	<property name="proxy.host" value="" />
+	<property name="proxy.port" value="" />
+	<property name="proxy.user" value="" />
+	<property name="proxy.pwd" value="" />
+	<setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}" proxyuser="${proxy.user}" proxypassword="${proxy.pwd}" />
+</target>
+</project>
+
